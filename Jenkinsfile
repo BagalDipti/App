@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/BagalDipti/Project_Demo.git'
+        git 'https://github.com/BagalDipti/App.git'
       }
     }
     stage('Building image') {
