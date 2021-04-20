@@ -8,4 +8,4 @@ EXPOSE 9090
 
 ENTRYPOINT [ "python" ]
 
-CMD [ "App.py" ]
+CMD [ "./App.py" ]

@@ -1,19 +1,20 @@
 pipeline {
   environment {
-    registry = "diptibagal3010/basic"
-    dockerImage = ''
+        registry = "localhost:5555"
+        dockerImage = ''
+        Name = "my_image"
   }
   agent any
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/BagalDipti/App.git'
+        git 'http://gsgit.gslab.com/dipti_bagal/Jenkins.git'
       }
     }
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + "/" +Name+":$BUILD_NUMBER"
         }
       }
     }
@@ -25,6 +26,14 @@ pipeline {
           }
         }
       }
+    }
+    stage('Docker Run') {
+        steps {
+          script {
+            dockerImage.run(" -p 9191:9090 --rm --name flaskcontainer")
+          }
+        }
+
     }
 
   }
