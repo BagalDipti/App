@@ -1,11 +1,11 @@
-FROM python:alpine3.7
+FROM python:3.8-alpine
 
-COPY App.py /app
+LABEL maintainer="dipti.bagal@gslab.com"
 
-COPY requirements.txt /app
+WORKDIR /usr/src/app
 
-EXPOSE 9090
+COPY . .
 
-ENTRYPOINT [ "python" ]
+RUN pip install -r requirements.txt
 
-CMD [ "./App.py" ]
+CMD [ "python", "./App.py" ]
